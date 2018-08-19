@@ -57,7 +57,7 @@ public class UnrealView2 extends FrameLayout {
             mIvInformation = mView.findViewById(R.id.iv_information);
             mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
             //然后使用LayoutParams把控件添加到子view中
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mView, lp);
         }
     }

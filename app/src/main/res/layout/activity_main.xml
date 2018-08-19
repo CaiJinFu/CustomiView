@@ -21,7 +21,7 @@
     <com.example.circleviewlibrary.UnrealView2
         android:id="@+id/uv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#000000"
         />
 
