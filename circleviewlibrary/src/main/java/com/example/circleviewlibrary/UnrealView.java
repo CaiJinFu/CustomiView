@@ -158,7 +158,9 @@ public class UnrealView extends ViewGroup {
                         View childAt = viewGroup.getChildAt(i);
                         if (childAt instanceof TextView) {
                             MarginLayoutParams lp2 = (MarginLayoutParams) childAt.getLayoutParams();
-                            lp2.leftMargin = mIvMeasuredWidth;
+                            int leftMargin;
+                            leftMargin = viewGroupWidth / 2 > mIvMeasuredWidth ? (viewGroupWidth / 2 + mIvMeasuredWidth / 5) : mIvMeasuredWidth;
+                            lp2.leftMargin = leftMargin;
                             childAt.setLayoutParams(lp2);
                         } else if (childAt instanceof ImageView) {
                             mIvMeasuredWidth = childAt.getMeasuredWidth();

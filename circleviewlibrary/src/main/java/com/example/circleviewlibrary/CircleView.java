@@ -39,8 +39,6 @@ public class CircleView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int mode = MeasureSpec.getMode(widthMeasureSpec);
         int size = MeasureSpec.getSize(widthMeasureSpec);
-
-
     }
 
     @Override
