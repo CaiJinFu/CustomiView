@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.circleviewlibrary.UnrealView2;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    @BindView(R.id.uv)
     UnrealView2 mUv;
 
     @Override
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mUv = findViewById(R.id.uv);
+//        mUv = findViewById(R.id.uv);
+//        mUv.setCount(132);
     }
 }

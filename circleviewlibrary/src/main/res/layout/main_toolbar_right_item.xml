@@ -22,9 +22,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/news_red"
         android:gravity="center"
-        android:maxLines="1"
         android:minWidth="@dimen/dp_10"
-        android:text="a465"
+        android:text="a46dss5"
         android:textColor="@color/color_white"
         android:textSize="@dimen/textSize_9"
         android:visibility="visible"/>

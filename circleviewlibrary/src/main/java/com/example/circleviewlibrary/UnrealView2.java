@@ -1,5 +1,6 @@
 package com.example.circleviewlibrary;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -49,6 +50,7 @@ public class UnrealView2 extends FrameLayout {
         a.recycle();
     }
 
+    @SuppressLint("SetTextI18n")
     public void setCount(int count) {
         mTvAllMsg.setText("" + count);
     }
@@ -64,12 +66,6 @@ public class UnrealView2 extends FrameLayout {
             mInflater = LayoutInflater.from(getContext());
             //添加布局文件
             mView = mInflater.inflate(R.layout.main_toolbar_right_item, this, true);
-            /*//绑定控件
-            mIvInformation = mView.findViewById(R.id.iv_information);
-            mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
-            //然后使用LayoutParams把控件添加到子view中
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-            addView(mView, lp);*/
         }
     }
 
