@@ -31,29 +31,12 @@ public class UnrealView extends ViewGroup {
     private int marginBottom;
     private int mDrawableId;
 
-    private int viewsHeight2;//所有子View的高度之和
-    private int paddingLeft2;
-    private int paddingRight2;
-    private int paddingTop2;
-    private int paddingBottom2;
-    private int marginLeft2;
-    private int marginTop2;
-    private int marginRight2;
-    private int marginBottom2;
-
     private View mView;
     private LayoutInflater mInflater;
     private ImageView mIvInformation;
     private TextView mTvAllMsg;
     private Context mContext;
-    private int mWidth;
-    private int mHeight;
-    private int startX;
-    private int mChildView3Top;
-    private int mChildView3Bottom;
-    private int mChildView3Left;
-    private int mChildView3Right;
-    private int mChildView3MeasuredHeight;
+    private int mIvMeasuredWidth;
 
     public UnrealView(@NonNull Context context) {
         super(context);
@@ -112,15 +95,6 @@ public class UnrealView extends ViewGroup {
             marginTop += lp.topMargin;//在本例中求出所有的上边距之和
             marginRight = Math.max(0, lp.rightMargin);//在本例中找出最大的右边距
             marginBottom += lp.bottomMargin;//在本例中求出所有的下边距之和
-            if (childView instanceof ViewGroup) {
-                View childView2 = ((ViewGroup) childView).getChildAt(0);
-                MarginLayoutParams lp2 = (MarginLayoutParams) childView2.getLayoutParams();
-                measureChild(childView2, widthMeasureSpec, heightMeasureSpec);
-                viewsHeight2 += childView2.getMeasuredHeight();
-                marginLeft2 = Math.max(0, lp2.leftMargin);//在本例中找出最大的左边距
-                View childView3 = ((ViewGroup) childView).getChildAt(0);
-                mChildView3MeasuredHeight = childView3.getMeasuredHeight();
-            }
         }
         /* 用于处理ViewGroup的wrap_content情况 */
         viewGroupWidth = paddingLeft + viewsWidth + paddingRight + marginLeft + marginRight;
@@ -178,13 +152,17 @@ public class UnrealView extends ViewGroup {
                 childView.layout(mLeft, mTop, mLeft + childView.getMeasuredWidth(), mTop + childView.getMeasuredHeight());
                 mTop += childView.getMeasuredHeight();
                 if (childView instanceof ViewGroup) {
-                    ViewGroup childView1 = (ViewGroup) childView;
-                    View childAt = childView1.getChildAt(1);
-                    View childAt2 = childView1.getChildAt(0);
-                    if (childAt instanceof TextView) {
-                        MarginLayoutParams lp2 = (MarginLayoutParams) childAt.getLayoutParams();
-                        lp2.leftMargin = childAt2.getMeasuredWidth();
-                        childAt.setLayoutParams(lp2);
+                    ViewGroup viewGroup = (ViewGroup) childView;
+                    int groupChildCount = viewGroup.getChildCount();
+                    for (int i = 0; i < groupChildCount; i++) {
+                        View childAt = viewGroup.getChildAt(i);
+                        if (childAt instanceof TextView) {
+                            MarginLayoutParams lp2 = (MarginLayoutParams) childAt.getLayoutParams();
+                            lp2.leftMargin = mIvMeasuredWidth;
+                            childAt.setLayoutParams(lp2);
+                        } else if (childAt instanceof ImageView) {
+                            mIvMeasuredWidth = childAt.getMeasuredWidth();
+                        }
                     }
                 }
             }
