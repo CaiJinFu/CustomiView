@@ -4,10 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,14 +63,23 @@ public class UnrealView extends FrameLayout {
             //初始化
             mInflater = LayoutInflater.from(getContext());
             //添加布局文件
-            mView = mInflater.inflate(R.layout.main_toolbar_right_item, null);
-            //绑定控件
-            mIvInformation = mView.findViewById(R.id.iv_information);
-            mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
+            mView = mInflater.inflate(R.layout.main_toolbar_right_item, this, true);
+
             //然后使用LayoutParams把控件添加到子view中
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
-            addView(mView, lp);
+            /*LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
+            addView(mView, lp);*/
         }
+    }
+
+    /**
+     * 此方法会在所有的控件都从xml文件中加载完成后调用
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        //绑定控件
+        mIvInformation = mView.findViewById(R.id.iv_information);
+        mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
     }
 
     @Override

@@ -1,14 +1,15 @@
 package com.example.circleviewlibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,40 +27,63 @@ public class UnrealView2 extends FrameLayout {
     private TextView mTvAllMsg;
     private Context mContext;
     private int mWidthMeasureSpec;
+    private String mCount;
+    private Drawable mDrawable;
 
     public UnrealView2(@NonNull Context context) {
-        super(context);
-        init(context);
+        this(context, null);
+        initView(context);
     }
 
     public UnrealView2(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+        this(context, attrs, 0);
+        initView(context);
     }
 
     public UnrealView2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        initView(context);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.UnrealView2);
+        mCount = a.getString(R.styleable.UnrealView2_count2);
+        mDrawable = a.getDrawable(R.styleable.UnrealView2_icon2);
+        a.recycle();
     }
 
-    private void init(Context context) {
+    public void setCount(int count) {
+        mTvAllMsg.setText("" + count);
+    }
+
+    public void setIcon(int drawable) {
+        mIvInformation.setBackground(ContextCompat.getDrawable(mContext, drawable));
+    }
+
+    private void initView(Context context) {
         mContext = context;
-        initView();
-    }
-
-    private void initView() {
         if (mView == null) {
             //初始化
             mInflater = LayoutInflater.from(getContext());
             //添加布局文件
-            mView = mInflater.inflate(R.layout.main_toolbar_right_item, null);
-            //绑定控件
+            mView = mInflater.inflate(R.layout.main_toolbar_right_item, this, true);
+            /*//绑定控件
             mIvInformation = mView.findViewById(R.id.iv_information);
             mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
             //然后使用LayoutParams把控件添加到子view中
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-            addView(mView, lp);
+            addView(mView, lp);*/
         }
+    }
+
+    /**
+     * 此方法会在所有的控件都从xml文件中加载完成后调用
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        //绑定控件
+        mIvInformation = findViewById(R.id.iv_information);
+        mTvAllMsg = findViewById(R.id.tv_allMsg);
+        mTvAllMsg.setText(mCount);
+        mIvInformation.setBackground(mDrawable);
     }
 
     @Override

@@ -3,4 +3,13 @@
     <declare-styleable name="CircleView">
         <attr name="color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="UnrealView">
+        <attr name="icon" format="reference"/>
+        <attr name="count" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="UnrealView2">
+        <attr name="icon2" format="reference"/>
+        <attr name="count2" format="string"/>
+    </declare-styleable>
 </resources>

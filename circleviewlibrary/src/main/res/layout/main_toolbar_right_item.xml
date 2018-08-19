@@ -14,8 +14,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/dp_4"
         android:layout_marginTop="@dimen/dp_4"
-        android:src="@drawable/information"
-        android:text="顾问"
         />
 
     <TextView
