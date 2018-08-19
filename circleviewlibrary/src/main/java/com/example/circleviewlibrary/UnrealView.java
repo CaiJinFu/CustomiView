@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +17,7 @@ import android.widget.TextView;
  * @date 2018/8/16
  * @describe
  */
-public class UnrealView extends ViewGroup {
+public class UnrealView extends FrameLayout {
 
     private int paddingLeft;
     private int paddingRight;
@@ -68,13 +70,15 @@ public class UnrealView extends ViewGroup {
             mIvInformation = mView.findViewById(R.id.iv_information);
             mTvAllMsg = mView.findViewById(R.id.tv_allMsg);
             //然后使用LayoutParams把控件添加到子view中
-            addView(mView, new ViewGroup.MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
+            addView(mView, lp);
         }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        viewsWidth = 0;
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        /*viewsWidth = 0;
         viewsHeight = 0;
         marginLeft = 0;
         marginTop = 0;
@@ -96,11 +100,11 @@ public class UnrealView extends ViewGroup {
             marginRight = Math.max(0, lp.rightMargin);//在本例中找出最大的右边距
             marginBottom += lp.bottomMargin;//在本例中求出所有的下边距之和
         }
-        /* 用于处理ViewGroup的wrap_content情况 */
+        *//* 用于处理ViewGroup的wrap_content情况 *//*
         viewGroupWidth = paddingLeft + viewsWidth + paddingRight + marginLeft + marginRight;
         viewGroupHeight = paddingTop + viewsHeight + paddingBottom + marginTop + marginBottom;
         setMeasuredDimension(measureWidth(widthMeasureSpec, viewGroupWidth), measureHeight
-                (heightMeasureSpec, viewGroupHeight));
+                (heightMeasureSpec, viewGroupHeight));*/
     }
 
     private int measureWidth(int measureSpec, int viewGroupWidth) {
@@ -144,6 +148,12 @@ public class UnrealView extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (changed) {
+            /*MarginLayoutParams lp2 = (MarginLayoutParams) mTvAllMsg.getLayoutParams();
+            int leftMargin;
+            leftMargin = getMeasuredWidth() / 2 > mIvInformation.getWidth() ? (getMeasuredWidth() / 2 + mIvInformation.getWidth() / 5) : mIvInformation.getWidth();
+            lp2.leftMargin = leftMargin;
+            mTvAllMsg.setLayoutParams(lp2);*/
+            /*
             int childCount = getChildCount();
             int mTop = paddingTop;
             for (int j = 0; j < childCount; j++) {
@@ -167,14 +177,14 @@ public class UnrealView extends ViewGroup {
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 
-    @Override
+    /*@Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
-    }
+    }*/
 
     private static final String TAG = "UnrealView";
 

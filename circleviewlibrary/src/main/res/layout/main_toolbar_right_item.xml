@@ -26,7 +26,7 @@
         android:gravity="center"
         android:maxLines="1"
         android:minWidth="@dimen/dp_10"
-        android:text="43fdfsfsfsfsdfds434343434343922"
+        android:text="a465"
         android:textColor="@color/color_white"
         android:textSize="@dimen/textSize_9"
         android:visibility="visible"/>
