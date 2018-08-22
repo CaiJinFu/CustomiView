@@ -8,7 +8,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
-import com.example.circleviewlibrary.UnrealView2;
+import com.example.circleviewlibrary.UnrealView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @BindView(R.id.uv)
-    UnrealView2 mUv;
+    UnrealView mUv;
     @BindView(R.id.btn)
     AppCompatButton mBtn;
 
