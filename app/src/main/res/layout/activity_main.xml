@@ -27,4 +27,12 @@
         app:icon2="@drawable/information"
         />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="获取屏幕分辨率等"
+        />
+
 </LinearLayout>

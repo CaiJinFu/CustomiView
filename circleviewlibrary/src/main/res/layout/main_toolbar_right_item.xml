@@ -25,7 +25,7 @@
         android:minWidth="@dimen/dp_10"
         android:text="a46dss5"
         android:textColor="@color/color_white"
-        android:textSize="@dimen/textSize_9"
+        android:textSize="@dimen/sp_9"
         android:visibility="visible"/>
 
 </FrameLayout>
